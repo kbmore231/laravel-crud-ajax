@@ -12,6 +12,7 @@
                 <li class="alert alert-danger"><strong>No Records Found..</strong></li>
             @endif
         </ul>
+        <ul></ul>
     </div>
     <div class="panel-footer">
         Copyright &copy; 2020 Khushal
