@@ -1,5 +1,6 @@
 <?php
 
+use App\DataTables\UserDataTable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,10 @@ Route::middleware('ajax.check')->group(function(){
     Route::get('todo/search/', 'TodoController@search');
     Route::post('todo/update', 'TodoController@update');
     Route::post('todo/save', 'TodoController@save');
+});
+Route::resource('users', 'UserController');
+Route::get('userdb', 'userController@userdb')->name('user');
+
+Route::get('/datatable', function(UserDataTable $datatable){
+    return $datatable->render('index');
 });

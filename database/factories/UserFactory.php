@@ -28,8 +28,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(User::Todo, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->paragraph(1)
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => $faker->unique()->email,
     ];
 });
