@@ -9,6 +9,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,6 +17,11 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style>
+            .pagination{
+                margin:0;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -34,6 +40,8 @@
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
         <script type="text/javascript">
             $(function(){
                 $.ajaxSetup({
@@ -100,6 +108,20 @@
                     var frmData = $(this).serialize();
                     $.post("{{URL::to('todo/update')}}", frmData, function(data, xhrStatus, xhr){
                         $('#todolist').html(data);
+                    });
+                });
+
+                $('#todolist').on('click', '.pagination a', function(e){
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.get(url, function(data){
+                        $('#todolist').empty().append(data);
+                    });
+                });
+
+                $('#todolist').on('keyup', '#searchTodo', function(){
+                    $(this).autocomplete({
+                        source : "{{URL::to('todo/search')}}"
                     });
                 });
             });

@@ -3,6 +3,7 @@
         <h3 class="panel-title">All Todo Tasks List <span class="pull-right"><button type="button" class="btn btn-success btn-xs" id="btnAddTask">+</button></span></h3>
     </div>
     <div class="panel-body">
+        <input type="text" name="search" id="searchTodo" class="form-control" placeholder="Type your search...">
         <ul class="list-group list-unstyled">
             @if($tasks->all())
                 @foreach($tasks as $task)
@@ -13,6 +14,7 @@
             @endif
         </ul>
         <ul></ul>
+    <ul>{{$tasks->links()}}</ul>
     </div>
     <div class="panel-footer">
         Copyright &copy; 2020 Khushal

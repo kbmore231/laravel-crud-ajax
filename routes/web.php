@@ -26,6 +26,7 @@ Route::middleware('ajax.check')->group(function(){
     Route::get('todo/create', 'TodoController@create');
     Route::get('todo/edit/{id}', 'TodoController@edit');
     Route::get('todo/destroy/{id}', 'TodoController@destroy');
+    Route::get('todo/search/', 'TodoController@search');
     Route::post('todo/update', 'TodoController@update');
     Route::post('todo/save', 'TodoController@save');
 });

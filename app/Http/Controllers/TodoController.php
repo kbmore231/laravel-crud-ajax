@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $tasks = Todo::all();
+        $tasks = Todo::paginate(2);
         return view('todo.index', compact('tasks'));
     }
 
@@ -49,5 +49,18 @@ class TodoController extends Controller
         $task->delete();
         $tasks = Todo::all();
         return view('todo.index', compact('tasks'));
+    }
+
+    public function search(Request $request)
+    {
+        $task = Todo::where('name', 'LIKE', "%$request->term%")->pluck('name');
+        if(!empty($task->all()))
+        {
+            return $task;
+        }
+        else
+        {
+            return ['No Record Found'];
+        }
     }
 }
